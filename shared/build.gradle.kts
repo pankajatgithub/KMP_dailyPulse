@@ -25,13 +25,31 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            // Koin
+            api(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.composeVM)
+
+            // ViewModel support in common code
+            implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.kotlinx.coroutines.core)
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
+
+        androidMain.dependencies {
+           //implementatio() used for thi module only, api used for using other module also
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
+        }
+        iosMain.dependencies {
+
+        }
     }
 }
+
 
 android {
     namespace = "com.example.kmp_dailypulse"
@@ -43,4 +61,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+dependencies {
+    implementation(libs.androidx.lifecycle.viewmodel.android)
 }
